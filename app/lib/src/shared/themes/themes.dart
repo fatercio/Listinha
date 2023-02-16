@@ -22,8 +22,9 @@ ThemeData get lightTheme => ThemeData(
       ),
       segmentedButtonTheme: _segmentedButtonThemeData,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: _lightColorScheme.primary,
-          foregroundColor: _lightColorScheme.onPrimary),
+        backgroundColor: _lightColorScheme.primary,
+        foregroundColor: _lightColorScheme.onPrimary,
+      ),
     );
 
 MaterialApp materialApp() {
