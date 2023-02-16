@@ -21,33 +21,35 @@ class _HomePageState extends State<HomePage> {
             child: UserImageButton(),
           ),
         ],
-        title: const Text("Florestal"),
+        title: const Text('Florestal'),
       ),
       body: Center(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SegmentedButton<int>(segments: const [
-                ButtonSegment(
-                  value: 0,
-                  label: Text('Todos'),
-                ),
-                ButtonSegment(
-                  value: 1,
-                  label: Text('Pendentes'),
-                ),
-                ButtonSegment(
-                  value: 2,
-                  label: Text('Concluídas'),
-                ),
-                ButtonSegment(
-                  value: 3,
-                  label: Text('Desativados'),
-                )
-              ], selected: const {
-                3
-              }, onSelectionChanged: (valuesS) => {}),
+              child: SegmentedButton<int>(
+                segments: const [
+                  ButtonSegment(
+                    value: 0,
+                    label: Text('Todos'),
+                  ),
+                  ButtonSegment(
+                    value: 1,
+                    label: Text('Pendentes'),
+                  ),
+                  ButtonSegment(
+                    value: 2,
+                    label: Text('Concluídas'),
+                  ),
+                  ButtonSegment(
+                    value: 3,
+                    label: Text('Desativados'),
+                  )
+                ],
+                selected: const {3},
+                onSelectionChanged: (values) => {1},
+              ),
             ),
           ],
         ),
