@@ -1,4 +1,4 @@
-import 'package:app/home/widgets/custom_drawer.dart';
+import 'package:app/src/home/widgets/custom_draw.dart';
 import 'package:app/src/shared/wigets/user_image_button.dart';
 import 'package:flutter/material.dart';
 
@@ -53,8 +53,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text("Novo inventário"),
+        onPressed: () {
+          Navigator.of(context).pushNamed('./edit');
+        },
+        label: const Text('Novo inventário'),
         icon: const Icon(Icons.edit),
       ),
     );

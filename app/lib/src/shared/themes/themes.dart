@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
 part 'color_schemes.g.dart';
 
 ThemeData get darkTheme => ThemeData(
@@ -24,15 +26,16 @@ ThemeData get lightTheme => ThemeData(
           foregroundColor: _lightColorScheme.onPrimary),
     );
 
-MaterialApp materialApp(
-  Widget widget,
-) {
-  return MaterialApp(
+MaterialApp materialApp() {
+  Modular.setInitialRoute('/home/');
+
+  return MaterialApp.router(
     debugShowCheckedModeBanner: false,
     themeMode: ThemeMode.light,
     theme: lightTheme,
     darkTheme: darkTheme,
-    home: widget,
+    routerDelegate: Modular.routerDelegate,
+    routeInformationParser: Modular.routeInformationParser,
   );
 }
 
