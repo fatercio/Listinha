@@ -1,6 +1,8 @@
 import 'package:app/src/home/widgets/custom_draw.dart';
+import 'package:app/src/shared/store/app_store.dart';
 import 'package:app/src/shared/wigets/user_image_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

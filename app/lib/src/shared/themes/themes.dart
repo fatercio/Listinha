@@ -1,3 +1,4 @@
+import 'package:app/src/shared/store/app_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -27,12 +28,13 @@ ThemeData get lightTheme => ThemeData(
       ),
     );
 
-MaterialApp materialApp() {
+MaterialApp materialApp(BuildContext context) {
   Modular.setInitialRoute('/home/');
+  final appStore = context.watch<AppStore>();
 
   return MaterialApp.router(
     debugShowCheckedModeBanner: false,
-    themeMode: ThemeMode.light,
+    themeMode: appStore.themeMode.value,
     theme: lightTheme,
     darkTheme: darkTheme,
     routerDelegate: Modular.routerDelegate,
