@@ -2,6 +2,7 @@ import 'package:app/src/configurations/configuration_page.dart';
 import 'package:app/src/home/widgets/home_module.dart';
 import 'package:app/src/shared/services/realm/realm_config.dart';
 import 'package:app/src/shared/store/app_store.dart';
+import 'package:app/src/tasks/service/task_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:realm/realm.dart';
 
@@ -12,8 +13,12 @@ class AppModule extends Module {
   List<Bind> get binds => [
         Bind.instance<Realm>(Realm(config)),
         Bind.singleton((i) => AppStore()),
+        Bind.singleton((i) => AppStore()),
         Bind.singleton<ConfigurationService>(
           (i) => ConfigurationServiceImpl(i(), i()),
+        ),
+        Bind.singleton<TaskService>(
+          (i) => TaskServiceImpl(i(), i()),
         ),
       ];
 
