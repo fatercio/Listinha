@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 import '../shared/store/app_store.dart';
 
@@ -11,15 +12,20 @@ class ConfigurationPage extends StatefulWidget {
 }
 
 class _ConfigurationPageState extends State<ConfigurationPage> {
+  final appStore = Modular.get<AppStore>();
+
+  void _changeThemeMode(ThemeMode? mode) {
+    if (mode != null) {
+      appStore.themeMode.value = mode;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final appStore = context.watch<AppStore>(
-      (store) => store.themeMode,
-    );
-
+    context.select(() => {appStore.themeMode.value});
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Florestal'),
+        title: Text('Listinha'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -43,19 +49,19 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
             RadioListTile<ThemeMode>(
               value: ThemeMode.system,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeThemeMode,
+              onChanged: _changeThemeMode,
               title: const Text('Sistema'),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.light,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeThemeMode,
+              onChanged: _changeThemeMode,
               title: const Text('Claro'),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.dark,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeThemeMode,
+              onChanged: _changeThemeMode,
               title: const Text('Escuro'),
             ),
             const SizedBox(height: 25),
@@ -66,7 +72,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
             const SizedBox(height: 10),
             OutlinedButton(
               onPressed: () {
-                appStore.changeThemeMode(ThemeMode.system);
+                _changeThemeMode(ThemeMode.system);
               },
               child: const Text('Reuniciar o app'),
             ),

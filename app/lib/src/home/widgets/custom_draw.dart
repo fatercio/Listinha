@@ -2,18 +2,17 @@ import 'package:app/src/shared/store/app_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final appStore = context.watch<AppStore>(
-      (store) => store.syncDate,
-    );
+    final appStore = context.read<AppStore>();
 
     var syncDateText = 'Nunca';
-    final syncDate = appStore.syncDate.value;
+    final syncDate = context.select(() => appStore.syncDate.value);
 
     if (syncDate != null) {
       final format = DateFormat('dd/MM/yyyy as hh:mm');
@@ -30,7 +29,7 @@ class CustomDrawer extends StatelessWidget {
       children: [
         Padding(
           padding:
-              const EdgeInsets.only(top: 8.0, right: 16, left: 16, bottom: 16),
+              const EdgeInsets.only(top: 8, right: 16, left: 16, bottom: 16),
           child: Text(
             'Opções',
             style: Theme.of(context).textTheme.titleSmall,

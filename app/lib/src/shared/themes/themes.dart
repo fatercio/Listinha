@@ -1,6 +1,7 @@
 import 'package:app/src/shared/store/app_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 part 'color_schemes.g.dart';
 
@@ -30,11 +31,12 @@ ThemeData get lightTheme => ThemeData(
 
 MaterialApp materialApp(BuildContext context) {
   Modular.setInitialRoute('/home/');
-  final appStore = context.watch<AppStore>();
+  final appStore = Modular.get<AppStore>();
+  final themeMode = context.select(() => appStore.themeMode.value);
 
   return MaterialApp.router(
     debugShowCheckedModeBanner: false,
-    themeMode: appStore.themeMode.value,
+    themeMode: themeMode,
     theme: lightTheme,
     darkTheme: darkTheme,
     routerDelegate: Modular.routerDelegate,
